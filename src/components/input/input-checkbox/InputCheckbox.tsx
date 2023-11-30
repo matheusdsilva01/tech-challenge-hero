@@ -1,11 +1,5 @@
 import { InputHTMLAttributes } from "react"
-import { tv } from "tailwind-variants"
-
-type InputCheckboxProps = {
-  fullWidth?: boolean
-  label?: string
-  labelStyle?: string
-} & InputHTMLAttributes<HTMLInputElement>
+import { type VariantProps, tv } from "tailwind-variants"
 
 const wrapper = tv({
   base: "flex items-center p-2",
@@ -13,6 +7,14 @@ const wrapper = tv({
     fullWidth: { true: "w-full" },
   },
 })
+
+type InputVariants = VariantProps<typeof wrapper>
+type InputCheckboxProps = {
+  label?: string
+  labelStyle?: string
+} & InputHTMLAttributes<HTMLInputElement> &
+  InputVariants
+
 const labelS = tv({
   base: "ml-2",
 })

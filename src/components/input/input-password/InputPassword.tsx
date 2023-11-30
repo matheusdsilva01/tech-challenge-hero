@@ -1,16 +1,18 @@
 "use client"
 import { InputHTMLAttributes, useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
-import { tv } from "tailwind-variants"
+import { type VariantProps, tv } from "tailwind-variants"
+import { baseInput } from "../styles"
 
+type InputVariants = VariantProps<typeof wrapper>
 type InputProps = {
-  fullWidth?: boolean
   label?: string
   labelStyle?: string
-} & InputHTMLAttributes<HTMLInputElement>
+} & InputHTMLAttributes<HTMLInputElement> &
+  InputVariants
 
 const input = tv({
-  base: "bg-zinc-800 p-2 rounded-md border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-600 focus:border-transparent",
+  extend: baseInput,
 })
 const wrapper = tv({
   base: "flex flex-col p-2 relative",
