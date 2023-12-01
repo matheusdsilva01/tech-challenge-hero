@@ -17,7 +17,7 @@ const button = tv({
       true: "w-full",
     },
     rounded: {
-      true: "rounded-full",
+      true: "rounded-3xl",
     },
   },
 })
