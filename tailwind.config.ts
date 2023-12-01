@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-libre-franklin)"],
+        k2d: ["var(--font-k2d)"],
+      },
       colors: {
         indigo: {
           800: "#48409E",
@@ -17,16 +21,24 @@ const config: Config = {
         },
         danger: "#FF7979",
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       height: {
         inherit: "inherit",
       },
       minHeight: {
         inherit: "inherit",
+      },
+      padding: {
+        24: "90px",
+      },
+      fontSize: {
+        xs: "1.125rem",
+      },
+      borderRadius: {
+        xl: "0.625rem",
+        "3xl": "1.25rem",
+      },
+      boxShadow: {
+        nav: "4px 0px 30px 10px rgba(0, 0, 0, 0.05)", // 0.25rem 0 1.875rem 0.0625rem
       },
     },
   },
