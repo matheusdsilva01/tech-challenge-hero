@@ -1,61 +1,57 @@
-"use client"
-import { useState } from "react"
-import Button from "@/components/button"
-import { Input } from "@/components/input"
-import { Modal } from "@/components/modal"
-import Select from "@/components/select"
+import TaskCard from "@/components/task/TaskCard"
+import TaskList from "@/components/task/TaskList"
 
-/* this page is to show a all components in project */
 const Home = () => {
-  const title = "text-2xl font-bold text-blue-500"
-  const [isOpen, setIsOpen] = useState(false)
-
   return (
-    <div>
-      <Button rounded fullWidth visual="outlined">
-        logout
-      </Button>
-      <Button rounded fullWidth visual="outlined" color="danger">
-        to dash
-      </Button>
-      <Button rounded fullWidth>
-        Hello world
-      </Button>
-      <h1 className={title}>text</h1>
-      <Input.InputText label="Nome" fullWidth />
-      <h1 className={title}>number</h1>
-      <Input.InputNumber label="Age" fullWidth />
-      <h1 className={title}>radio</h1>
-      <Input.InputRadio label="Js" value="javascript" name="fav_lang" />
-      <Input.InputRadio label="Java" value="java" name="fav_lang" />
-      <h1 className={title}>select</h1>
-      <Select
-        variant="tertiary"
-        options={[
-          { label: "First", value: "1" },
-          { label: "Second", value: "2" },
-          { label: "Thirty", value: "3" },
-        ]}
-      />
-      <h1 className={title}>checkbox</h1>
-      <Input.InputCheckbox label="Concordo" id="accept" />
-      <h1 className={title}>modal</h1>
-      <Button
-        rounded
-        fullWidth
-        className="mb-5"
-        onClick={() => setIsOpen(true)}
-      >
-        Open modal
-      </Button>
-      <Modal.ModalRoot
-        onSubmit={() => console.log("submit")}
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-      >
-        <Modal.ModalContent>Conteúdo modal oi</Modal.ModalContent>
-        <Modal.ModalActions />
-      </Modal.ModalRoot>
+    <div className="flex flex-wrap gap-x-10 gap-y-4 px-[84px] pb-9 pt-[121px]">
+      <TaskList title="To do (3)">
+        <TaskCard
+          title="Testar Navegadores"
+          description="Verificar e garantir a compatibilidade da
+          aplicação em diferentes navegadores."
+          date="25/12/2023"
+          badgeType="high"
+        />
+        <TaskCard
+          title="Atualizar Bibliotecas"
+          description="Manter as libs atualizadas para garantir 
+          segurança e aproveitar novos recursos"
+          date="25/12/2023"
+          badgeType="low"
+        />
+        <TaskCard
+          title="Implementar Animações"
+          description="Adicionar efeitos visuais e transições para melhorar a experiência do usuário."
+          date="25/12/2023"
+          badgeType="medium"
+        />
+      </TaskList>
+      <TaskList title="Doing (1)">
+        <TaskCard
+          title="Atualizar Bibliotecas"
+          description="Manter as libs atualizadas para garantir 
+          segurança e aproveitar novos recursos"
+          date="25/12/2023"
+          badgeType="low"
+        />
+      </TaskList>
+      <TaskList title="QA (1)">
+        <TaskCard
+          title="Atualizar Bibliotecas"
+          description="Manter as libs atualizadas para garantir 
+          segurança e aproveitar novos recursos"
+          date="25/12/2023"
+          badgeType="low"
+        />
+      </TaskList>
+      <TaskList title="Done (1)">
+        <TaskCard
+          title="Final Project: App development"
+          description="Business Web Development"
+          date="25/12/2023"
+          badgeType="finished"
+        />
+      </TaskList>
     </div>
   )
 }

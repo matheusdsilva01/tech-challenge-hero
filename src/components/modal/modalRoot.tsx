@@ -11,7 +11,7 @@ type ModalRootProps = {
 
 const ModalRoot = ({ isOpen, children, onClose, onSubmit }: ModalRootProps) => {
   const className =
-    "fixed top-0 left-0 w-full h-full bg-black/50 backdrop-blur-sm z-50 flex justify-center items-center"
+    "fixed top-0 left-0 w-full h-full bg-black/[0.85] z-50 flex justify-center items-center"
   function onKeyDown(e: KeyboardEvent) {
     if (e.key === "Escape") {
       onClose()
@@ -34,15 +34,17 @@ const ModalRoot = ({ isOpen, children, onClose, onSubmit }: ModalRootProps) => {
           <div onClick={onClose} className={className}>
             <div
               onClick={stopPropagation}
-              className="mx-2 min-h-[488px] w-full max-w-2xl overflow-auto rounded-lg bg-white text-zinc-800"
+              className="mx-2 flex min-h-[463px] w-full max-w-2xl flex-col overflow-auto rounded-lg bg-white px-10"
             >
-              <div className="overflow-hidden bg-zinc-300 p-2">
-                <span className="font-bold text-zinc-900">Modal</span>
-                <button onClick={onClose} className="float-right m-auto">
+              <div className="overflow-hidden pt-8">
+                <h2 className="text-[26px] font-semibold text-indigo-800">
+                  Novo Card
+                </h2>
+                {/* <button onClick={onClose} className="float-right m-auto">
                   <X className="h-6 w-6 cursor-pointer" />
-                </button>
+                </button> */}
               </div>
-              <div className="flex min-h-inherit w-full flex-col">
+              <div className="mt-9 flex min-h-full w-full flex-1 flex-col">
                 {children}
               </div>
             </div>

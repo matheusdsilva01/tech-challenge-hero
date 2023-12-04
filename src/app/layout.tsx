@@ -34,7 +34,7 @@ export default async function RootLayout({
       >
         <nav className="left-0 top-0 z-20 h-[100dvh] w-72 bg-white px-[60px] text-violet-800 shadow-nav">
           <div className="mt-14">
-            <h1 className="font-k2d text-center text-4xl font-bold">TASKBAN</h1>
+            <h1 className="text-center font-k2d text-4xl font-bold">TASKBAN</h1>
             <ul className="mt-[57px] space-y-[50px] text-xl">
               <li className="flex cursor-pointer items-center space-x-5 font-semibold text-violet-800">
                 <Image
@@ -51,7 +51,7 @@ export default async function RootLayout({
               </li>
               <li className="flex cursor-pointer items-center space-x-5 text-neutral-500">
                 <Image
-                  src="/icons/list.svg"
+                  src="/icons/calendar.svg"
                   alt="list icon"
                   width={25}
                   height={25}
@@ -79,7 +79,7 @@ export default async function RootLayout({
             </ul>
           </div>
         </nav>
-        <main className="flex-1">
+        <main className="max-h-screen flex-1 overflow-auto">
           <Header />
           {children}
         </main>

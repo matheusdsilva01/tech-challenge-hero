@@ -1,6 +1,6 @@
-import { InputHTMLAttributes } from "react"
+import { TextareaHTMLAttributes } from "react"
 import { tv, type VariantProps } from "tailwind-variants"
-import { baseInput } from "../styles"
+import { baseInput } from "../input/styles"
 
 type InputVariants = VariantProps<typeof input>
 type WrapperVariants = VariantProps<typeof wrapper>
@@ -8,8 +8,7 @@ type InputProps = {
   label?: string
   labelStyle?: string
   register?: any
-  error?: boolean
-} & InputHTMLAttributes<HTMLInputElement> &
+} & TextareaHTMLAttributes<HTMLTextAreaElement> &
   InputVariants &
   WrapperVariants
 
@@ -17,7 +16,6 @@ const input = tv({
   extend: baseInput,
   variants: baseInput.variants,
 })
-
 const wrapper = tv({
   base: "relative",
   variants: {
@@ -25,7 +23,7 @@ const wrapper = tv({
   },
 })
 
-const InputText = ({
+const Textarea = ({
   fullWidth,
   label,
   labelStyle,
@@ -33,16 +31,14 @@ const InputText = ({
   register,
   ...otherProps
 }: InputProps) => {
-  console.log(otherProps.error)
   return (
     <div className={wrapper({ fullWidth })}>
-      <input
+      <textarea
         {...register}
-        type="text"
         id={label}
         className={input({ class: className, ...otherProps })}
         {...otherProps}
-      />
+      ></textarea>
       {label && (
         <label
           htmlFor={label}
@@ -58,4 +54,4 @@ const InputText = ({
   )
 }
 
-export default InputText
+export default Textarea

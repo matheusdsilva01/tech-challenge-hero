@@ -1,11 +1,17 @@
-import { ReactNode } from "react"
+import { HTMLAttributes, ReactNode } from "react"
 
 type ModalContentProps = {
   children: ReactNode
-}
-const ModalContent = ({ children }: ModalContentProps) => {
+} & HTMLAttributes<HTMLDivElement>
+const ModalContent = ({ children, ...otherProps }: ModalContentProps) => {
   return (
-    <div className="flex max-h-[600px] flex-1 overflow-auto px-4 py-2">
+    <div
+      className={
+        "flex max-h-[600px] flex-1 flex-col overflow-auto py-2 " +
+        otherProps.className
+      }
+      {...otherProps}
+    >
       {children}
     </div>
   )
