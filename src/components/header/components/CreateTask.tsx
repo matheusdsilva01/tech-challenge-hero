@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -8,6 +9,7 @@ import Button from "@/components/button"
 import { Input } from "@/components/input"
 import { Modal } from "@/components/modal"
 import Textarea from "@/components/textarea"
+import { useTasks } from "@/hooks/useTasks"
 
 const priority = ["high", "medium", "low"] as const
 
@@ -20,6 +22,7 @@ const schema = z.object({
 
 type TaskFormData = z.infer<typeof schema>
 const CreateTask = () => {
+  const { addTask } = useTasks()
   const [open, setOpen] = useState(false)
   const {
     register,
@@ -27,11 +30,19 @@ const CreateTask = () => {
     formState: { errors },
   } = useForm<TaskFormData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      title: "Teste",
+      description: "Teste",
+      priority: "high",
+      endDate: new Date(),
+    },
   })
 
   function onSubmit(data: any) {
-    console.log(data)
+    addTask(data)
+    setOpen(false)
   }
+
   return (
     <>
       <Button
@@ -73,26 +84,26 @@ const CreateTask = () => {
                 Priority
               </h4>
               {priority.map(item => (
-                <span key={item}>
+                <label htmlFor={item} key={item}>
                   <input
                     {...register("priority")}
                     type="radio"
                     id={item}
                     name="priority"
                     value={item}
-                    className={`peer/${item} hidden`}
+                    className={`peer `}
                   />
-                  <label
-                    htmlFor={item}
-                    className={`peer-checked/${item}:[&>*]:ring-2`}
-                  >
-                    <Badge
-                      type={item}
-                      className="ring-indigo-800 ring-offset-2"
-                    />
-                  </label>
-                </span>
+                  <Badge
+                    type={item}
+                    className={`ring-indigo-800 ring-offset-2 peer-checked:ring-2 peer-focus:ring-2`}
+                  />
+                </label>
               ))}
+              {!!errors.priority && (
+                <p className="text-[11px] text-red-500">
+                  Escolha uma prioridade
+                </p>
+              )}
             </div>
           </div>
         </Modal.ModalContent>

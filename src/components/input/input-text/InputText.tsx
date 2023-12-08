@@ -12,7 +12,6 @@ type InputProps = {
 } & InputHTMLAttributes<HTMLInputElement> &
   InputVariants &
   WrapperVariants
-
 const input = tv({
   extend: baseInput,
   variants: baseInput.variants,
@@ -31,16 +30,16 @@ const InputText = ({
   labelStyle,
   className,
   register,
+  error,
   ...otherProps
 }: InputProps) => {
-  console.log(otherProps.error)
   return (
     <div className={wrapper({ fullWidth })}>
       <input
         {...register}
         type="text"
         id={label}
-        className={input({ class: className, ...otherProps })}
+        className={input({ class: className, error, ...otherProps })}
         {...otherProps}
       />
       {label && (

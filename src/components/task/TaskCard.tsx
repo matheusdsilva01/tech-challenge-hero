@@ -9,7 +9,8 @@ interface TaskCardProps {
 }
 
 const TaskCard = ({ badgeType, date, description, title }: TaskCardProps) => {
-  const textColor = badgeType === "high" ? "text-danger" : "text-neutral-500"
+  const textColor =
+    new Date(date) < new Date() ? "text-red-500" : "text-gray-500"
   return (
     <div className="min-h-[155px] w-full rounded-xl bg-white p-5 text-neutral-500 shadow">
       <h3 className="text-xl font-semibold">{title}</h3>
@@ -18,7 +19,9 @@ const TaskCard = ({ badgeType, date, description, title }: TaskCardProps) => {
         {badgeType !== "finished" ? (
           <>
             <Clock3 className={textColor} width={24} />
-            <span className={`ml-2.5 font-semibold ${textColor}`}>{date}</span>
+            <span className={`ml-2.5 font-semibold ${textColor}`}>
+              {new Date(date).toLocaleDateString("pt-BR")}
+            </span>
             <Badge type={badgeType} className="ml-auto" />
           </>
         ) : (

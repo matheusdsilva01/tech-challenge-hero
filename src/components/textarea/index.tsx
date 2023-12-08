@@ -29,6 +29,7 @@ const Textarea = ({
   labelStyle,
   className,
   register,
+  error,
   ...otherProps
 }: InputProps) => {
   return (
@@ -36,7 +37,7 @@ const Textarea = ({
       <textarea
         {...register}
         id={label}
-        className={input({ class: className, ...otherProps })}
+        className={input({ class: className, error, ...otherProps })}
         {...otherProps}
       ></textarea>
       {label && (
