@@ -1,7 +1,7 @@
 "use client"
 import { useContext } from "react"
 import { v4 as uuid } from "uuid"
-import { TasksContext } from "@/context/tasks"
+import { TasksContext } from "@/context/Tasks"
 import { Task, TaskList } from "@/types/task"
 
 export const initialTasks: TaskList = {
@@ -40,6 +40,22 @@ export const initialTasks: TaskList = {
       endDate: new Date("2023-12-25T00:00:00.000Z"),
       priority: "low",
     },
+    {
+      id: uuid(),
+      title: "Implementar Animações",
+      description:
+        "Adicionar efeitos visuais e transições para melhorar a experiência do usuário.",
+      endDate: new Date("2023-12-25T00:00:00.000Z"),
+      priority: "medium",
+    },
+    {
+      id: uuid(),
+      title: "Testar Navegadores",
+      description:
+        "Verificar e garantir a compatibilidade da aplicação em diferentes navegadores.",
+      endDate: new Date("2023-12-02T00:00:00.000Z"),
+      priority: "high",
+    },
   ],
   qa: [
     {
@@ -69,20 +85,31 @@ export const emptyTasks = {
 }
 
 export function useTasks() {
-  const { tasks: oldTasks, setTasks } = useContext(TasksContext)
+  const { tasks, setTasks } = useContext(TasksContext)
   const addTask = (task: Task) => {
-    const { todo } = oldTasks
+    const { todo } = tasks
     const newTask = {
       ...task,
       id: uuid(),
     }
     const newTasks = {
-      ...oldTasks!,
+      ...tasks!,
       todo: [...todo, newTask],
     }
     localStorage.setItem("tasks", JSON.stringify(newTasks))
     setTasks(newTasks)
   }
 
-  return { addTask }
+  function changePosition(task: Task, list: keyof TaskList, to: number) {
+    const newList = tasks[list].filter(item => item.id !== task.id)
+    newList.splice(to, 0, task)
+    const newTasks = {
+      ...tasks,
+      [list]: newList,
+    }
+    localStorage.setItem("tasks", JSON.stringify(newTasks))
+    setTasks(newTasks)
+  }
+
+  return { addTask, changePosition }
 }

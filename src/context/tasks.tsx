@@ -10,15 +10,12 @@ import {
 import { emptyTasks, initialTasks } from "@/hooks/useTasks"
 import { TaskList } from "@/types/task"
 
-interface TasksContextProps {
+type TasksContextProps = {
   tasks: TaskList
   setTasks: Dispatch<SetStateAction<TaskList>>
 }
 
-export const TasksContext = createContext<TasksContextProps>({
-  tasks: emptyTasks,
-  setTasks: () => {},
-})
+export const TasksContext = createContext({} as TasksContextProps)
 
 export const TasksContextProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<TaskList>(emptyTasks)
@@ -27,7 +24,7 @@ export const TasksContextProvider = ({ children }: { children: ReactNode }) => {
     if (typeof window === "undefined") return
     const storage = JSON.parse(localStorage.getItem("tasks") || "null")
     if (storage) {
-      setTasks(storage)
+      return setTasks(storage)
     } else {
       localStorage.setItem("tasks", JSON.stringify(initialTasks))
       setTasks(initialTasks)
