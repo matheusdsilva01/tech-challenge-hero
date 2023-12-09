@@ -8,17 +8,17 @@ import {
   useState,
 } from "react"
 import { emptyTasks, initialTasks } from "@/hooks/useTasks"
-import { TaskList } from "@/types/task"
+import { TaskListType } from "@/types/task"
 
 type TasksContextProps = {
-  tasks: TaskList
-  setTasks: Dispatch<SetStateAction<TaskList>>
+  tasks: TaskListType
+  setTasks: Dispatch<SetStateAction<TaskListType>>
 }
 
 export const TasksContext = createContext({} as TasksContextProps)
 
 export const TasksContextProvider = ({ children }: { children: ReactNode }) => {
-  const [tasks, setTasks] = useState<TaskList>(emptyTasks)
+  const [tasks, setTasks] = useState<TaskListType>(emptyTasks)
 
   useEffect(() => {
     if (typeof window === "undefined") return

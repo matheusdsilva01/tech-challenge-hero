@@ -6,6 +6,7 @@ import TaskCard from "@/components/task/TaskCard"
 import TaskList from "@/components/task/TaskList"
 import { TasksContext } from "@/context/Tasks"
 import { useTasks } from "@/hooks/useTasks"
+import { KeyTaskList } from "@/types/task"
 
 const cardsTitle = {
   todo: "To do",
@@ -16,27 +17,39 @@ const cardsTitle = {
 
 const Home = () => {
   const { tasks } = useContext(TasksContext)
-  const { changePosition } = useTasks()
-  type Key = keyof typeof cardsTitle
-  const taskEntries = Array.from(Object.entries(cardsTitle)) as [Key, string][]
+  const { changePosition, changeList } = useTasks()
+  const taskEntries = Array.from(Object.entries(cardsTitle)) as [
+    KeyTaskList,
+    string,
+  ][]
 
   function changeListTask({ destination, source }: DropResult) {
     if (!destination) return
+    const task = tasks[source.droppableId as KeyTaskList][source.index]
 
     if (
       destination.droppableId === source.droppableId &&
       destination.index !== source.index
     ) {
-      const task = tasks[source.droppableId as Key][source.index]
-      changePosition(task, source.droppableId as Key, destination.index)
+      changePosition(task, source.droppableId as KeyTaskList, destination.index)
+      return
+    }
+    if (destination.droppableId !== source.droppableId) {
+      changeList(
+        task,
+        destination.index,
+        source.droppableId as KeyTaskList,
+        destination.droppableId as KeyTaskList,
+      )
+      return
     }
   }
   return (
     <div className="flex flex-wrap gap-x-10 gap-y-4 px-[84px] pb-9 pt-[121px]">
-      {tasks &&
-        taskEntries.map(([key, value]: [key: Key, value: string]) => (
-          <TaskList key={key} title={`${value} (${tasks[key].length})`}>
-            <DragDropContext onDragEnd={changeListTask}>
+      <DragDropContext onDragEnd={changeListTask}>
+        {tasks &&
+          taskEntries.map(([key, value]: [key: KeyTaskList, value: string]) => (
+            <TaskList key={key} title={`${value} (${tasks[key].length})`}>
               <Droppable droppableId={key}>
                 {provided => (
                   <section
@@ -51,9 +64,9 @@ const Home = () => {
                   </section>
                 )}
               </Droppable>
-            </DragDropContext>
-          </TaskList>
-        ))}
+            </TaskList>
+          ))}
+      </DragDropContext>
     </div>
   )
 }

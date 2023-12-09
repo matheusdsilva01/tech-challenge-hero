@@ -2,9 +2,9 @@
 import { useContext } from "react"
 import { v4 as uuid } from "uuid"
 import { TasksContext } from "@/context/Tasks"
-import { Task, TaskList } from "@/types/task"
+import { KeyTaskList, Task, TaskListType } from "@/types/task"
 
-export const initialTasks: TaskList = {
+export const initialTasks: TaskListType = {
   todo: [
     {
       id: uuid(),
@@ -100,16 +100,33 @@ export function useTasks() {
     setTasks(newTasks)
   }
 
-  function changePosition(task: Task, list: keyof TaskList, to: number) {
-    const newList = tasks[list].filter(item => item.id !== task.id)
+  function changePosition(task: Task, keyTaslList: KeyTaskList, to: number) {
+    const newList = tasks[keyTaslList].filter(item => item.id !== task.id)
     newList.splice(to, 0, task)
     const newTasks = {
       ...tasks,
-      [list]: newList,
+      [keyTaslList]: newList,
     }
     localStorage.setItem("tasks", JSON.stringify(newTasks))
     setTasks(newTasks)
   }
 
-  return { addTask, changePosition }
+  function changeList(
+    task: Task,
+    index: number,
+    from: KeyTaskList,
+    to: KeyTaskList,
+  ) {
+    const newList = tasks[to]
+    newList.splice(index, 0, task)
+    const newTasks = {
+      ...tasks,
+      [from]: tasks[from].filter(item => item.id !== task.id),
+      [to]: newList,
+    }
+    localStorage.setItem("tasks", JSON.stringify(newTasks))
+    setTasks(newTasks)
+  }
+
+  return { addTask, changePosition, changeList }
 }

@@ -1,4 +1,4 @@
-export interface TaskList {
+export interface TaskListType {
   todo: Task[] | []
   doing: Task[] | []
   qa: Task[] | []
@@ -11,3 +11,5 @@ export interface Task {
   priority: "high" | "medium" | "low"
   endDate: Date
 }
+
+export type KeyTaskList = keyof TaskListType
