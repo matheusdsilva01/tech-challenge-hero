@@ -17,3 +17,7 @@ body {
     appearance: textfield !important;
   }
 }
+/*  --toastify-color-progress-success */
+.Toastify__progress-bar--success {
+  @apply !bg-violet-300;
+}

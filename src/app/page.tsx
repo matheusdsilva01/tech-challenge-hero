@@ -24,7 +24,7 @@ const Home = () => {
     string,
   ][]
 
-  function changeListTask({ destination, source }: DropResult) {
+  function onDragEnd({ destination, source }: DropResult) {
     if (!destination) return
     const task = tasks[source.droppableId as KeyTaskList][source.index]
 
@@ -47,7 +47,7 @@ const Home = () => {
   }
   return (
     <div className="flex flex-wrap justify-center gap-y-4 px-3 pb-9 pt-7 sm:gap-x-10 sm:pt-[121px] md:px-8 xl:px-[84px]">
-      <DragDropContext onDragEnd={changeListTask}>
+      <DragDropContext onDragEnd={onDragEnd}>
         {tasks &&
           taskEntries.map(([key, value]: [key: KeyTaskList, value: string]) => (
             <TaskList key={key} title={`${value} (${tasks[key].length})`}>

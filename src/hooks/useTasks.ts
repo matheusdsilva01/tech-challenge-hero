@@ -1,5 +1,6 @@
 "use client"
 import { useContext } from "react"
+import { toast } from "react-toastify"
 import { v4 as uuid } from "uuid"
 import { TasksContext } from "@/context/Tasks"
 import { KeyTaskList, Task, TaskListType } from "@/types/task"
@@ -126,6 +127,9 @@ export function useTasks() {
     }
     localStorage.setItem("tasks", JSON.stringify(newTasks))
     setTasks(newTasks)
+    if (to === "done") {
+      toast.success("Tarefa concluída!")
+    }
   }
 
   return { addTask, changePosition, changeList }

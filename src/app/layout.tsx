@@ -1,10 +1,12 @@
 import React from "react"
 import { Libre_Franklin, K2D } from "next/font/google"
+import { ToastContainer } from "react-toastify"
 import Header from "@/components/header"
 import Sidebar from "@/components/sidebar"
 import { TasksContextProvider } from "@/context/Tasks"
 import type { Metadata } from "next"
 import "./globals.css"
+import "react-toastify/dist/ReactToastify.css"
 
 const libreFranklin = Libre_Franklin({
   subsets: ["latin"],
@@ -42,6 +44,7 @@ export default function RootLayout({
             {children}
           </main>
         </TasksContextProvider>
+        <ToastContainer />
       </body>
     </html>
   )

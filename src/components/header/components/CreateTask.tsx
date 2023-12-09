@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { toast } from "react-toastify"
 import { z } from "zod"
 import Badge from "@/components/Badge"
 import Button from "@/components/button"
@@ -40,6 +41,7 @@ const CreateTask = () => {
 
   function onSubmit(data: any) {
     addTask(data)
+    toast.success("Task criada com sucesso!")
     setOpen(false)
   }
 
