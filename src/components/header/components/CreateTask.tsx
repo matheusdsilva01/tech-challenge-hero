@@ -46,7 +46,7 @@ const CreateTask = () => {
   return (
     <>
       <Button
-        className="ml-auto rounded-xl px-6 py-4 text-xs font-medium"
+        className="ml-auto rounded-xl px-4 py-2 font-medium md:px-6 md:py-4 md:text-xs"
         color="violet"
         onClick={() => setOpen(true)}
       >
@@ -70,16 +70,16 @@ const CreateTask = () => {
             label="Descrição"
             placeholder="Digite a descrição"
           />
-          <div className="mt-6 flex justify-between">
+          <div className="mt-6 flex flex-col justify-between sm:flex-row">
             <Input.InputText
               type="date"
               error={!!errors.endDate}
               register={register("endDate")}
               label="Data final"
-              className="w-[280px]"
+              className="w-full sm:w-[280px]"
               placeholder="Selecione a data de entrega"
             />
-            <div className="flex w-[232px] flex-wrap justify-between">
+            <div className="mt-6 flex w-[232px] flex-wrap justify-between sm:mt-0">
               <h4 className="mb-2 w-full text-[11px] font-normal text-neutral-500">
                 Priority
               </h4>
@@ -91,7 +91,7 @@ const CreateTask = () => {
                     id={item}
                     name="priority"
                     value={item}
-                    className={`peer `}
+                    className={`peer absolute h-0 w-0 opacity-0`}
                   />
                   <Badge
                     type={item}

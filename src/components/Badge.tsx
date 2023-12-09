@@ -2,7 +2,7 @@ import { HTMLAttributes } from "react"
 import { tv, type VariantProps } from "tailwind-variants"
 
 const BadgeS = tv({
-  base: "rounded-full border px-3 py-1 w-min text-center text-[12px] font-semibold",
+  base: "rounded-full border px-2 py-0.5 w-min text-center text-[12px] font-medium sm:font-semibold sm:px-3",
   variants: {
     type: {
       low: "border-lime-700 text-lime-700",

@@ -1,4 +1,5 @@
 import { MouseEvent, ReactNode, useEffect } from "react"
+import { X } from "lucide-react"
 import { ModalContext } from "@/context/Modal"
 
 type ModalRootProps = {
@@ -33,15 +34,15 @@ const ModalRoot = ({ isOpen, children, onClose, onSubmit }: ModalRootProps) => {
           <div onClick={onClose} className={className}>
             <div
               onClick={stopPropagation}
-              className="mx-2 flex min-h-[463px] w-full max-w-2xl flex-col overflow-auto rounded-lg bg-white px-10"
+              className="mx-2 flex min-h-[463px] w-full max-w-2xl flex-col overflow-auto rounded-lg bg-white px-4 sm:px-10"
             >
-              <div className="overflow-hidden pt-8">
-                <h2 className="text-[26px] font-semibold text-indigo-800">
+              <div className="flex overflow-hidden pt-8">
+                <h2 className="text-xl font-semibold text-indigo-800 sm:text-[26px]">
                   Novo Card
                 </h2>
-                {/* <button onClick={onClose} className="float-right m-auto">
+                <button onClick={onClose} className="ml-auto sm:hidden">
                   <X className="h-6 w-6 cursor-pointer" />
-                </button> */}
+                </button>
               </div>
               <div className="mt-9 flex min-h-full w-full flex-1 flex-col">
                 {children}

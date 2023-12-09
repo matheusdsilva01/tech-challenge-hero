@@ -45,7 +45,7 @@ const Home = () => {
     }
   }
   return (
-    <div className="flex flex-wrap gap-x-10 gap-y-4 px-[84px] pb-9 pt-[121px]">
+    <div className="flex flex-wrap justify-center gap-y-4 px-3 pb-9 pt-7 sm:gap-x-10 sm:pt-[121px] md:px-8 xl:px-[84px]">
       <DragDropContext onDragEnd={changeListTask}>
         {tasks &&
           taskEntries.map(([key, value]: [key: KeyTaskList, value: string]) => (
@@ -53,7 +53,7 @@ const Home = () => {
               <Droppable droppableId={key}>
                 {provided => (
                   <section
-                    className="mt-9 space-y-4"
+                    className="mt-2 space-y-4 sm:mt-9"
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >

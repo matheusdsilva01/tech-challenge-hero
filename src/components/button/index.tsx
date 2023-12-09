@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react"
 import { tv, type VariantProps } from "tailwind-variants"
 
 const button = tv({
-  base: "px-4 py-2",
+  base: "sm:px-4 sm:py-2 px-2 py-1",
   variants: {
     visual: {
       contained: "!text-white border-none",

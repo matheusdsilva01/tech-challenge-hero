@@ -6,7 +6,7 @@ const ModalActions = () => {
   const modalContext = useContext(ModalContext)
 
   return (
-    <div className="mb-10 mt-auto flex w-full gap-2 px-2 py-1">
+    <div className="mb-2 mt-auto flex w-full gap-2 px-2 py-1 sm:mb-10">
       <Button
         className="ml-auto w-44 text-ss font-normal text-danger"
         visual="outlined"
