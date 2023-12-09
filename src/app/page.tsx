@@ -2,6 +2,7 @@
 
 import { useContext } from "react"
 import { DragDropContext, DropResult, Droppable } from "@hello-pangea/dnd"
+import Image from "next/image"
 import TaskCard from "@/components/task/TaskCard"
 import TaskList from "@/components/task/TaskList"
 import { TasksContext } from "@/context/Tasks"
@@ -57,9 +58,24 @@ const Home = () => {
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    {tasks[key].map(task => (
-                      <TaskCard key={task.id} task={task} />
-                    ))}
+                    {tasks[key].length > 0 ? (
+                      tasks[key].map(task => (
+                        <TaskCard key={task.id} task={task} />
+                      ))
+                    ) : (
+                      <div>
+                        <Image
+                          src="/icons/cat.png"
+                          alt="image cat"
+                          className="m-auto w-52"
+                          width={612}
+                          height={446}
+                        />
+                        <p className="text-center text-gray-400">
+                          Sem tarefas aqui...
+                        </p>
+                      </div>
+                    )}
                     {provided.placeholder}
                   </section>
                 )}
