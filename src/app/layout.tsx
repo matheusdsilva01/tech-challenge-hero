@@ -39,7 +39,7 @@ export default function RootLayout({
           <div className="hidden md:block">
             <Sidebar />
           </div>
-          <main className="max-h-screen flex-1 overflow-auto">
+          <main className="flex max-h-screen w-full flex-col overflow-auto">
             <Header />
             {children}
           </main>

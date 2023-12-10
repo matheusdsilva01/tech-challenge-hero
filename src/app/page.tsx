@@ -46,7 +46,7 @@ const Home = () => {
     }
   }
   return (
-    <div className="flex flex-wrap justify-center gap-y-4 px-3 pb-9 pt-7 sm:gap-x-10 sm:pt-[121px] md:px-8 xl:px-[84px]">
+    <div className="flex flex-1 gap-y-4 overflow-auto px-3 pb-9 pt-7 sm:gap-x-10 sm:pt-[121px] md:px-8 xl:px-[84px]">
       <DragDropContext onDragEnd={onDragEnd}>
         {tasks &&
           taskEntries.map(([key, value]: [key: KeyTaskList, value: string]) => (

@@ -21,3 +21,20 @@ body {
 .Toastify__progress-bar--success {
   @apply !bg-violet-300;
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-violet-200;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-violet-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-violet-600;
+}
