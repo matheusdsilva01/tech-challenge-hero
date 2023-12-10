@@ -24,7 +24,8 @@ const Home = () => {
     string,
   ][]
 
-  function onDragEnd({ destination, source }: DropResult) {
+  function onDragEnd({ destination, source, ...other }: DropResult) {
+    console.log({ destination, source, ...other })
     if (!destination) return
     const task = tasks[source.droppableId as KeyTaskList][source.index]
 
@@ -50,14 +51,14 @@ const Home = () => {
       <DragDropContext onDragEnd={onDragEnd}>
         {tasks &&
           taskEntries.map(([key, value]: [key: KeyTaskList, value: string]) => (
-            <TaskList key={key} title={`${value} (${tasks[key].length})`}>
-              <Droppable droppableId={key}>
-                {provided => (
-                  <section
-                    className="mt-2 space-y-4 sm:mt-9"
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                  >
+            <Droppable key={key} droppableId={key}>
+              {provided => (
+                <TaskList
+                  key={key}
+                  provided={provided}
+                  title={`${value} (${tasks[key].length})`}
+                >
+                  <section className="mt-2 space-y-4 sm:mt-9">
                     {tasks[key].length > 0 ? (
                       tasks[key].map(task => (
                         <TaskCard key={task.id} task={task} />
@@ -76,11 +77,11 @@ const Home = () => {
                         </p>
                       </div>
                     )}
-                    {provided.placeholder}
                   </section>
-                )}
-              </Droppable>
-            </TaskList>
+                  {provided.placeholder}
+                </TaskList>
+              )}
+            </Droppable>
           ))}
       </DragDropContext>
     </div>

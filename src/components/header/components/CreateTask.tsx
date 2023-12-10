@@ -29,14 +29,9 @@ const CreateTask = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<TaskFormData>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      title: "Teste",
-      description: "Teste",
-      priority: "high",
-      endDate: new Date(),
-    },
   })
 
   function onSubmit(data: any) {
@@ -85,22 +80,28 @@ const CreateTask = () => {
               <h4 className="mb-2 w-full text-[11px] font-normal text-neutral-500">
                 Priority
               </h4>
-              {priority.map(item => (
-                <label htmlFor={item} key={item}>
-                  <input
-                    {...register("priority")}
-                    type="radio"
-                    id={item}
-                    name="priority"
-                    value={item}
-                    className={`peer absolute h-0 w-0 opacity-0`}
-                  />
-                  <Badge
-                    type={item}
-                    className={`ring-indigo-800 ring-offset-2 peer-checked:ring-2 peer-focus:ring-2`}
-                  />
-                </label>
-              ))}
+              {priority.map(item => {
+                const isSelected = watch("priority") === item
+                return (
+                  <label htmlFor={item} key={item} className="relative">
+                    <input
+                      {...register("priority")}
+                      type="radio"
+                      id={item}
+                      name="priority"
+                      value={item}
+                      className={`peer absolute h-0 w-0 opacity-0`}
+                    />
+                    <Badge
+                      type={item}
+                      className={`ring-indigo-800 ring-offset-2 peer-checked:ring-2 peer-focus:ring-2`}
+                    />
+                    {isSelected && (
+                      <div className="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-indigo-800" />
+                    )}
+                  </label>
+                )
+              })}
               {!!errors.priority && (
                 <p className="text-[11px] text-red-500">
                   Escolha uma prioridade
