@@ -36,7 +36,7 @@ export default function RootLayout({
         className={`${libreFranklin.variable} ${fontK2D.variable} flex flex-row font-sans`}
       >
         <TasksContextProvider>
-          <div className="hidden md:block">
+          <div className="hidden xl:block">
             <Sidebar />
           </div>
           <main className="flex max-h-screen min-h-screen w-full flex-col overflow-auto">

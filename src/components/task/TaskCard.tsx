@@ -31,7 +31,7 @@ const TaskCard = ({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className="min-h-[155px] w-full rounded-xl bg-white p-5 text-neutral-500 shadow"
+          className="min-h-[155px] w-full rounded-xl bg-white p-3 text-neutral-500 shadow sm:p-5"
         >
           <h3 className="break-words font-semibold sm:text-xl">{title}</h3>
           <p className="mt-4 break-words text-sm font-medium sm:text-ss">
