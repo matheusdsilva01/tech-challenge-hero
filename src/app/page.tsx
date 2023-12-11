@@ -24,8 +24,7 @@ const Home = () => {
     string,
   ][]
 
-  function onDragEnd({ destination, source, ...other }: DropResult) {
-    console.log({ destination, source, ...other })
+  function onDragEnd({ destination, source }: DropResult) {
     if (!destination) return
     const task = tasks[source.droppableId as KeyTaskList][source.index]
 

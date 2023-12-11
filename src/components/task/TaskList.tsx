@@ -15,7 +15,7 @@ const TaskList = ({ children, title, provided }: TaskListProps) => {
     <div
       ref={provided.innerRef}
       {...provided.droppableProps}
-      className={`h-fit min-h-[243px] w-full max-w-[300px] flex-1 shrink-0 basis-full flex-col rounded-3xl bg-zinc-100 px-2 py-[14px] shadow-card sm:max-w-[330px] ${
+      className={`h-fit min-h-[243px] w-full max-w-[300px] flex-1 shrink-0 basis-full rounded-3xl bg-zinc-100 px-2 py-[14px] shadow-card sm:max-w-[330px] ${
         show ? "min-h-fit" : ""
       }`}
     >
